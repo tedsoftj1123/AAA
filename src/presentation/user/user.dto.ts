@@ -1,5 +1,5 @@
 export class SignupRequest {
-  account: string;
+  email: string;
   password: string;
   name: string;
 }

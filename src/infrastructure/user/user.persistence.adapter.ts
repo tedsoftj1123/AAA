@@ -11,8 +11,9 @@ export class UserPersistenceAdapter implements UserPort {
     @InjectRepository(UserEntity)
     private readonly userTypeOrmRepository: Repository<UserEntity>,
   ) {}
-  async findByAccountId(accountId: string): Promise<User> {
-    return this.userTypeOrmRepository.findOneBy({ accountId });
+
+  async findByEmail(email: string): Promise<User> {
+    return this.userTypeOrmRepository.findOneBy({ email });
   }
 
   async save(user: User): Promise<User> {
