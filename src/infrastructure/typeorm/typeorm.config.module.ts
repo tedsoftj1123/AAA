@@ -14,6 +14,7 @@ import { UserModule } from '../user/user.module';
       entities: [],
       synchronize: true,
       autoLoadEntities: true,
+      logging: true
     }),
     UserModule,
   ],

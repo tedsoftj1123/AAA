@@ -6,4 +6,4 @@ export interface UserPort {
   findByEmail(accountId: string): Promise<User>;
 }
 
-export const UserPort = Symbol('IService');
+export const UserPort = Symbol('IUserPort');
