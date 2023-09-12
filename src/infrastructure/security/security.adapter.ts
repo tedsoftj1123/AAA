@@ -8,4 +8,8 @@ export class SecurityAdapter implements SecurityPort {
     const salt = await bcrypt.genSalt();
     return await bcrypt.hash(str, salt);
   }
+
+  async comparePassword(raw: string, encoded: string): Promise<boolean> {
+    return await bcrypt.compare(raw, encoded);
+  }
 }

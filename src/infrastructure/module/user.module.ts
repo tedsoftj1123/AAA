@@ -6,12 +6,11 @@ import { SignupUseCase } from '../../application/user/signup.usecase';
 import { UserWebAdapter } from '../../presentation/user/user.web.adapter';
 import { UserPort } from '../../application/user/spi/user.spi';
 
+const userPort = { provide: UserPort, useClass: UserPersistenceAdapter };
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
-  providers: [
-    { provide: UserPort, useClass: UserPersistenceAdapter },
-    SignupUseCase,
-  ],
+  providers: [userPort, SignupUseCase],
   controllers: [UserWebAdapter],
+  exports: [userPort],
 })
 export class UserModule {}
