@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { SecurityPort } from '../../application/global/spi/security.spi';
+import { SecurityPort } from '../../application/common/spi/security.spi';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()

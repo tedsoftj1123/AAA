@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './user.entity';
-import { UserPersistenceAdapter } from './user.persistence.adapter';
+import { UserEntity } from '../user/user.entity';
+import { UserPersistenceAdapter } from '../user/user.persistence.adapter';
 import { SignupUseCase } from '../../application/user/signup.usecase';
 import { UserWebAdapter } from '../../presentation/user/user.web.adapter';
 import { UserPort } from '../../application/user/spi/user.spi';

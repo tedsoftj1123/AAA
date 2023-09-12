@@ -1,5 +1,5 @@
 import { Global, Module } from '@nestjs/common';
-import { SecurityPort } from '../../application/global/spi/security.spi';
+import { SecurityPort } from '../../application/common/spi/security.spi';
 import { SecurityAdapter } from './security.adapter';
 import { RedisCacheModule } from '../redis/redis.cache.module';
 import { JwtPort } from '../../application/auth/spi/auth.spi';

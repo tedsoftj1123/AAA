@@ -3,7 +3,7 @@ import { SignupRequest } from '../../presentation/user/user.dto';
 import { UserAlreadyExistsException } from './exception/user.exceptions';
 import { UserPort } from './spi/user.spi';
 import { Authority } from '../../infrastructure/user/user.entity';
-import { SecurityPort } from '../global/spi/security.spi';
+import { SecurityPort } from '../common/spi/security.spi';
 import { JwtPort } from '../auth/spi/auth.spi';
 
 @Injectable()
