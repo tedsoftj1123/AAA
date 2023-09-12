@@ -27,6 +27,14 @@ export class JwtAdapter implements JwtPort {
     };
   }
 
+  async parseJwt(token: string): Promise<string> {
+    const parsed = await this.jwtService.verifyAsync(token, {
+      secret: 'dmsport',
+    });
+
+    return parsed.sub;
+  }
+
   private async signJwtToken(userId: string, exp: string, typ: string) {
     return await this.jwtService.signAsync(
       { sub: userId, typ },

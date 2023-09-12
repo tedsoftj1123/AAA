@@ -9,6 +9,10 @@ export class RedisRepository {
     private readonly cacheManager: Cache,
   ) {}
 
+  async get(key: string): Promise<any> {
+    return await this.cacheManager.get(key);
+  }
+
   async set(key: string, value: string, ttl: number) {
     await this.cacheManager.set(key, value, ttl);
   }
