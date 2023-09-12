@@ -3,8 +3,8 @@ import { SignupRequest } from '../../presentation/user/user.dto';
 import { UserAlreadyExistsException } from './exception/user.exceptions';
 import { UserPort } from './spi/user.spi';
 import { Authority } from '../../infrastructure/user/user.entity';
-import { User } from '../../domain/user/user';
 import { SecurityPort } from '../global/spi/security.spi';
+import { JwtPort } from '../auth/spi/auth.spi';
 
 @Injectable()
 export class SignupUseCase {
@@ -13,6 +13,8 @@ export class SignupUseCase {
     private readonly userPort: UserPort,
     @Inject(SecurityPort)
     private readonly securityPort: SecurityPort,
+    @Inject(JwtPort)
+    private readonly jwtPort: JwtPort,
   ) {}
 
   async execute(request: SignupRequest) {
@@ -20,13 +22,13 @@ export class SignupUseCase {
       throw UserAlreadyExistsException.EXCEPTION;
     }
 
-    const user: User = {
+    const savedUser = await this.userPort.save({
       email: request.email,
       password: await this.securityPort.encodeString(request.password),
       name: request.name,
       authority: Authority.USER,
-    };
+    });
 
-    await this.userPort.save(user);
+    return await this.jwtPort.generateToken(savedUser.id);
   }
 }
